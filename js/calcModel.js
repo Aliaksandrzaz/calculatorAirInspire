@@ -54,6 +54,8 @@ export class Model {
         let z = fragment.reduce((acc, el) => {
             let element = document.createElement('div');
             let classImage = this.countImage % 2 === 0 ? 'output-image__vertical' : 'output-image__horizontal';
+            // element.style.transform = this.countImage % 2 === 0 ? 'rotate(45deg)' : 'rotate(0deg)';
+
             this.countImage++;
             element.classList.add(classImage);
             acc.append(element);

@@ -42,15 +42,20 @@
     height: 25px;
 }
 
+.output-drawing{
+    background: green;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 25% 90%;
+    justify-items: center;
+}
+
 .output-image{
     background: green;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    /*background: url("./image/vent.png");*/
-    /*background-size: 170px;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position-x: -10%;*/
+
 }
 
 .output-image__vertical{
