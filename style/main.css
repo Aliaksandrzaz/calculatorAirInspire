@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'OpinionPro';
+    src: url('./fonts/Opinionprolight.woff2') format('woff2'),
+    url('./fonts/Opinionprolight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container-calculator {
+    font-family: 'OpinionPro', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    color: black;
+}
+
+.container-calculator {
+    border: 1px solid red;
+    display: grid;
+    grid-template-rows: 2fr;
+    grid-template-columns: 30% 70%;
+}
+
+.container {
+    border: 1px solid blue;
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+
+.calculator-text {
+    text-align: center;
+}
+
+.calculator__input{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    justify-content: space-around;
+}
+
+.size-value__text{
+    border: 1px solid;
+    border-radius: 5px;
+    height: 25px;
+}
+
+.output-image{
+    background: green;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    /*background: url("./image/vent.png");*/
+    /*background-size: 170px;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position-x: -10%;*/
+}
+
+.output-image__vertical{
+    width: 100%;
+    height: 100%;
+    background: url("./image/9.gif");
+    background-size: 80px;
+    background-repeat: no-repeat;
+    background-position-x: 0px;
+}
+
+.output-image__horizontal{
+    width: 100%;
+    height: 100%;
+    background: url("./image/9.gif");
+    background-size: 80px;
+    background-repeat: no-repeat;
+    background-position-x: 0%;
+}
+

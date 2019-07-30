@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator air inspire</title>
+    <link rel="stylesheet" href="style/main.css">
+    <script src="js/app.js" type="module"></script>
+</head>
+<body>
+<div class="container-calculator">
+
+    <div class="container">
+        <div class="calculator">
+
+            <div class="">
+                <select class="calculator__select">
+                    <option >DSEE 65H</option>
+                </select>
+            </div>
+
+            <p class="calculator-text">Введите нужный размер экрана, метры</p>
+            <div class="calculator__input size-value">
+                <input value="0.650" min="0.650" id="sizeValueHorizontal" data-inputValue class="size-value__text" type="number"
+                       placeholder="Горизонталь">
+                <input value="0.650" min="0.650" id="sizeValueVertical" data-inputValue class="size-value__text" type="number"
+                       placeholder="Вертикаль">
+            </div>
+
+            <p class="calculator-text">Или введите нужное количество устройств</p>
+            <div class="calculator__input quantity-value">
+                <input value="1" min="1" id="quantityValueHorizontal" data-inputValue class="size-value__text" type="number"
+                       step="1" placeholder="Количество по горизонтали">
+                <input value="1" min="1" id="quantityValueVertical" data-inputValue class="size-value__text" type="number"
+                       step="1" placeholder="Количество по вертикали">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="output-image">
+            <div class="output-image__horizontal"></div>
+            <!--<img src="./style/image/vent.png">-->
+        </div>
+
+        <div class="output-value">
+            <div class="output-value__icon"><span class=""></span> <span data-outputValue="power">48</span>
+                <span>вват</span></div>
+            <div class="output-value__icon"><span class=""></span> <span data-outputValue="weight">0,7</span>
+                <span>кг</span></div>
+            <div class="output-value__icon"><span class=""></span> <span data-outputValue="quantity">1</span> <span>устройств</span>
+            </div>
+            <div class="output-value__icon"><span class=""></span> <span data-outputValue="pixels">720x720</span> <span>пикселей</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
