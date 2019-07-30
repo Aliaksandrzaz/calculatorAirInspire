@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="72dcc75f-9441-40e2-a979-773501da4f97" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/calcModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/calcModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/calcView.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/calcView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/eventEmitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/eventEmitter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style/image/9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/style/image/9.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/main.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calcView.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calcView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/calcView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="84" column="50" selection-start-line="84" selection-start-column="50" selection-end-line="84" selection-end-column="50" />
+            <state relative-caret-position="379">
+              <caret line="86" column="106" selection-start-line="86" selection-start-column="104" selection-end-line="86" selection-end-column="106" />
             </state>
           </provider>
         </entry>
@@ -81,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/style/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
+            <state relative-caret-position="479">
+              <caret line="119" column="11" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -111,9 +106,9 @@
         <option value="$PROJECT_DIR$/js/calcContr.js" />
         <option value="$PROJECT_DIR$/js/eventEmitter.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/style/main.css" />
         <option value="$PROJECT_DIR$/js/calcModel.js" />
         <option value="$PROJECT_DIR$/js/calcView.js" />
+        <option value="$PROJECT_DIR$/style/main.css" />
       </list>
     </option>
   </component>
@@ -196,25 +191,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1564424082859</updated>
-      <workItem from="1564424085884" duration="50319000" />
+      <workItem from="1564424085884" duration="51418000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50319000" />
+    <option name="totallyTimeSpent" value="51418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2062" height="1136" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32944608" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32944608" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -257,13 +252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/calcModel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
@@ -280,8 +268,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/calcView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="84" column="50" selection-start-line="84" selection-start-column="50" selection-end-line="84" selection-end-column="50" />
+        <state relative-caret-position="379">
+          <caret line="86" column="106" selection-start-line="86" selection-start-column="104" selection-end-line="86" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="119" column="11" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="11" />
         </state>
       </provider>
     </entry>
