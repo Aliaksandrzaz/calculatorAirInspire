@@ -1,8 +1,6 @@
 export class EventEmitter {
     constructor() {
         this.events = {};
-        this.rand = Math.random();
-        console.log(this.rand);
     }
 
     emit(eventName, data) {
@@ -26,7 +24,3 @@ export class EventEmitter {
     }
 }
 
-
-// let eventEmitter= new EventEmitter();
-//
-// export {eventEmitter};

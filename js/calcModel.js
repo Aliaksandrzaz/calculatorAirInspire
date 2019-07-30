@@ -29,12 +29,19 @@ export class Model {
     }
 
     changeQuantityHorizontal(value) {
+
         this.quantityHorizontal = Math.round((value[0].value - 0.65) / 0.465 + 1);
+        this.distanceHorizontal = (((this.quantityHorizontal - 1) * 0.465 + 0.65) * 1000) / 1000;
+
         this.eventEmitter.emit('changeQuantityHorizontal', this.quantityHorizontal);
+        this.eventEmitter.emit('changeValueDistanceHorizontal', this.distanceHorizontal.toFixed(3));
     }
 
     changeQuantityVertical(value) {
         this.quantityVertical = Math.round((value[1].value - 0.65) / 0.465 + 1);
+        this.distanceVertical = (((this.quantityVertical - 1) * 0.465 + 0.65) * 1000) / 1000;
+
+        this.eventEmitter.emit('changeValueDistanceVertical', this.distanceVertical.toFixed(3));
         this.eventEmitter.emit('changeQuantityVertical', this.quantityVertical);
     }
 
@@ -49,13 +56,12 @@ export class Model {
     }
 
     createImage() {
-
         let fragment = new Array(this.quantityVertical * this.quantityHorizontal).fill(null);
         let z = fragment.reduce((acc, el) => {
             let element = document.createElement('div');
             let classImage = this.countImage % 2 === 0 ? 'output-image__vertical' : 'output-image__horizontal';
             // element.style.transform = this.countImage % 2 === 0 ? 'rotate(45deg)' : 'rotate(0deg)';
-
+            // element.style.transform = `translate(${-10}px, ${-10}px)`;
             this.countImage++;
             element.classList.add(classImage);
             acc.append(element);
@@ -69,5 +75,24 @@ export class Model {
             quantityVertical: this.quantityVertical
         });
     }
+
+    // createImage() {
+    //     let canvas = document.getElementById('canvas');
+    //     let ctx = canvas.getContext('2d');
+    //     let imageObj1 = new Image();
+    //
+    //     imageObj1.src = "style/image/vent.jpg";
+    //     imageObj1.onload = () => {
+    //
+    //         for (let i = 0; i < this.quantityVertical * this.quantityHorizontal; i++){
+    //             ctx.drawImage(imageObj1, 0 + 10 * i, 0 + 10 * i, 20, 20);
+    //         }
+    //         // ctx.drawImage(imageObj1, 0, 0, 328, 526);
+    //
+    //         let img = canvas.toDataURL("image/png");
+    //         // document.write('<img src="' + img + '" width="328" height="526"/>');
+    //     }
+    // }
+
 
 }

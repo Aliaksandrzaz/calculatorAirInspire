@@ -12,7 +12,9 @@ export class View {
         // this.sizeValue = document.querySelectorAll('.size-value');
         // this.quantityValue = document.querySelectorAll('.quantity-value');
         this.outputValue = document.body.querySelectorAll('[data-outputValue]');
-        this.calculacor.addEventListener('input', this);
+        this.outputImageHeight = document.querySelector('.output-image__height');
+        this.outputImageWidth = document.querySelector('.output-image__width');
+        this.calculacor.addEventListener('change', this);
 
 
         this.outputImage = document.querySelector('.output-image');
@@ -42,12 +44,14 @@ export class View {
     changeDistanceVertical() {
         this.eventEmitter.subscribe('changeValueDistanceVertical', (inputValue) => {
             this.sizeValueVertical.value = inputValue;
+            this.outputImageWidth.textContent = `${inputValue}м`;
         });
     }
 
     changeDistanceHorizontal() {
         this.eventEmitter.subscribe('changeValueDistanceHorizontal', (inputValue) => {
             this.sizeValueHorizontal.value = inputValue;
+            this.outputImageHeight.textContent = `${inputValue}м`;
         });
     }
 
@@ -74,10 +78,16 @@ export class View {
     createFieldImage() {
         this.eventEmitter.subscribe('createImage', (value) => {
             for (let i = 0, length = this.outputImage.childElementCount; i < length; i++) {
-                this.outputImage.removeChild(this.outputImage.firstChild);
+                // this.outputImage.removeChild(this.outputImage.firstChild);
+                this.outputImage.children.item(0).remove();
             }
-            this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, 80px)`;
-            this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, 80px)`;
+            let size = getComputedStyle(this.outputImage).width <= getComputedStyle(this.outputImage).height ? parseInt(getComputedStyle(this.outputImage).width) : parseInt(getComputedStyle(this.outputImage).height);
+            let count = value.quantityHorizontal >= value.quantityVertical ? value.quantityHorizontal : value.quantityVertical;
+            this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${size / count}px)`;
+            this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${size / count}px)`;
+
+            // this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${100 / value.quantityHorizontal}%)`;
+            // this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${100 / value.quantityVertical}%)`;
             this.outputImage.append(value.x);
         });
     }
