@@ -81,14 +81,62 @@ export class View {
                 // this.outputImage.removeChild(this.outputImage.firstChild);
                 this.outputImage.children.item(0).remove();
             }
-            let size = getComputedStyle(this.outputImage).width <= getComputedStyle(this.outputImage).height ? parseInt(getComputedStyle(this.outputImage).width) : parseInt(getComputedStyle(this.outputImage).height);
-            let count = value.quantityHorizontal >= value.quantityVertical ? value.quantityHorizontal : value.quantityVertical;
+            // let size = 0;
+            // let count = 0;
+            // if (parseFloat(getComputedStyle(this.outputImage).width) >= parseFloat(getComputedStyle(this.outputImage).height)) {
+            //     size = parseFloat(getComputedStyle(this.outputImage).height) ;
+            // }
+            // else {
+            //     size = parseFloat(getComputedStyle(this.outputImage).width);
+            // }
+            //
+            // if (value.quantityHorizontal <= value.quantityVertical) {
+            //     count = value.quantityVertical;
+            // }
+            // else {
+            //     // count = (value.quantityHorizontal + value.quantityVertical) / 2;
+            //     count = value.quantityVertical;
+            // }
+            // this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${size / count}px)`;
+            //
+            // this.outputImage.style.gridTemplateColumns = `${value.quantityHorizontal}, ${size / count}px`;
+            // // for (let i = 0; i < value.quantityVertical; i++) {
+            // //     let size = parseFloat(getComputedStyle(this.outputImage).height) / value.quantityVertical / value.quantityHorizontal;
+            // //     value.x.querySelectorAll('.x')[i].style.gridTemplateColumns = `repeat (${value.quantityHorizontal}, ${size} px)`;
+            // // }
+            //
+            // this.outputImage.append(value.x);
+            // // for (let i = 0; i < value.quantityVertical; i++) {
+            // //     // document.querySelectorAll('.x')[i].style.gridTemplateColumns = `repeat (${value.quantityHorizontal},${ parseFloat(getComputedStyle(this.outputImage).height) / value.quantityVertical / value.quantityHorizontal})px`;
+            // //     let size = parseFloat(getComputedStyle(this.outputImage).height) / value.quantityVertical / value.quantityHorizontal;
+            // //     document.getElementsByClassName('x')[i].style.gridTemplateColumns = `${value.quantityHorizontal}, ${size} px`;
+            // // }
+
+            let size = 0;
+            let count = 0;
+            // let size = getComputedStyle(this.outputImage).width < getComputedStyle(this.outputImage).height ? parseInt(getComputedStyle(this.outputImage).height) : parseInt(getComputedStyle(this.outputImage).width);
+            // let count = value.quantityHorizontal > value.quantityVertical ? value.quantityHorizontal : value.quantityVertical;
+            if (parseFloat(getComputedStyle(this.outputImage).width) >= parseFloat(getComputedStyle(this.outputImage).height)) {
+                size = parseFloat(getComputedStyle(this.outputImage).height);
+            }
+            else {
+                size = parseFloat(getComputedStyle(this.outputImage).width);
+            }
+
+            if (value.quantityHorizontal <= value.quantityVertical) {
+                count = value.quantityVertical;
+            }
+            else {
+                count = (value.quantityHorizontal + value.quantityVertical) / 2 ;
+            }
+
             this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${size / count}px)`;
             this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${size / count}px)`;
-
             // this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${100 / value.quantityHorizontal}%)`;
             // this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${100 / value.quantityVertical}%)`;
             this.outputImage.append(value.x);
+
+
         });
     }
 }

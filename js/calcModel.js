@@ -57,16 +57,32 @@ export class Model {
 
     createImage() {
         let fragment = new Array(this.quantityVertical * this.quantityHorizontal).fill(null);
+
         let z = fragment.reduce((acc, el) => {
+            if (this.countImage !==0 && this.countImage % this.quantityHorizontal=== 0){
+                this.countImage = 0;
+            }
+            else {
+                this.countImage++;
+            }
             let element = document.createElement('div');
             let classImage = this.countImage % 2 === 0 ? 'output-image__vertical' : 'output-image__horizontal';
             // element.style.transform = this.countImage % 2 === 0 ? 'rotate(45deg)' : 'rotate(0deg)';
             // element.style.transform = `translate(${-10}px, ${-10}px)`;
-            this.countImage++;
+
             element.classList.add(classImage);
             acc.append(element);
+
+            // if (this.countImage !==0 && this.countImage % this.quantityHorizontal=== 0){
+            //     this.countImage = 0;
+            // }
+            // else {
+            //     this.countImage++;
+            // }
             return acc;
         }, document.createDocumentFragment());
+
+        this.countImage =0;
 
         this.eventEmitter.emit('createImage', {
             // element: element,
@@ -77,21 +93,28 @@ export class Model {
     }
 
     // createImage() {
-    //     let canvas = document.getElementById('canvas');
-    //     let ctx = canvas.getContext('2d');
-    //     let imageObj1 = new Image();
+    //     let fragment = new Array(this.quantityVertical).fill(null);
     //
-    //     imageObj1.src = "style/image/vent.jpg";
-    //     imageObj1.onload = () => {
-    //
-    //         for (let i = 0; i < this.quantityVertical * this.quantityHorizontal; i++){
-    //             ctx.drawImage(imageObj1, 0 + 10 * i, 0 + 10 * i, 20, 20);
+    //     let z = fragment.reduce((acc, el) => {
+    //         let row = document.createElement('div');
+    //         row.classList.add('x');
+    //         for (let i = 0; i < this.quantityHorizontal; i++) {
+    //             let column = document.createElement('div');
+    //             let classImage = this.countImage % 2 === 0 ? 'output-image__vertical' : 'output-image__horizontal';
+    //             column.classList.add(classImage);
+    //             row.append(column);
+    //             this.countImage++;
     //         }
-    //         // ctx.drawImage(imageObj1, 0, 0, 328, 526);
+    //         acc.append(row);
+    //         return acc;
+    //     }, document.createDocumentFragment());
     //
-    //         let img = canvas.toDataURL("image/png");
-    //         // document.write('<img src="' + img + '" width="328" height="526"/>');
-    //     }
+    //     this.eventEmitter.emit('createImage', {
+    //         // element: element,
+    //         x: z,
+    //         quantityHorizontal: this.quantityHorizontal,
+    //         quantityVertical: this.quantityVertical
+    //     });
     // }
 
 
