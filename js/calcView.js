@@ -27,7 +27,7 @@ export class View {
         this.changeOutputValue();
 
         this.createFieldImage();
-        // this.controller.createFieldImage();
+        this.controller.createFieldImage();
     }
 
     handleEvent() {
