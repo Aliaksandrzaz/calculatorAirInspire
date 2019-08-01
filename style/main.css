@@ -59,7 +59,7 @@
 }
 
 .output-drawing {
-    background: green;
+/*     background: green; */
     display: grid;
     grid-template-columns: 10% 90%;
     grid-template-rows: 10% 90%;
@@ -69,7 +69,7 @@
 }
 
 .output-image {
-    background: gold;
+/*     background: gold; */
     display: grid;
     grid-template-columns: 50%;
     grid-template-rows: 100%;
