@@ -45,14 +45,14 @@ export class View {
     changeDistanceVertical() {
         this.eventEmitter.subscribe('changeValueDistanceVertical', (inputValue) => {
             this.sizeValueVertical.value = inputValue;
-            this.outputImageWidth.textContent = `${inputValue}м`;
+            this.outputImageWidth.textContent = `${inputValue.split('.').join(',')}м`;
         });
     }
 
     changeDistanceHorizontal() {
         this.eventEmitter.subscribe('changeValueDistanceHorizontal', (inputValue) => {
             this.sizeValueHorizontal.value = inputValue;
-            this.outputImageHeight.textContent = `${inputValue}м`;
+            this.outputImageHeight.textContent = `${inputValue.split('.').join(',')}м`;
         });
     }
 
