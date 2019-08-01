@@ -82,7 +82,7 @@ export class View {
                 this.outputImage.children.item(0).remove();
             }
             this.outputImage.textContent = '';
-            if (value.quantityHorizontal * value.quantityVertical <= 15) {
+            if (value.quantityHorizontal * value.quantityVertical <= 50) {
                 let size = 0;
                 let count = 0;
 
