@@ -27,7 +27,7 @@ export class View {
         this.changeOutputValue();
 
         this.createFieldImage();
-        this.controller.createFieldImage();
+        // this.controller.createFieldImage();
     }
 
     handleEvent() {
@@ -81,41 +81,51 @@ export class View {
             for (let i = 0, length = this.outputImage.childElementCount; i < length; i++) {
                 this.outputImage.children.item(0).remove();
             }
-            let size = 0;
-            let count = 0;
+            this.outputImage.textContent = '';
+            if (value.quantityHorizontal * value.quantityVertical <= 15) {
+                let size = 0;
+                let count = 0;
 
-            let x = parseFloat(getComputedStyle(this.outputImage).width);
-            let y = parseFloat(getComputedStyle(this.outputImage).height);
+                let x = parseFloat(getComputedStyle(this.outputImage).width);
+                let y = parseFloat(getComputedStyle(this.outputImage).height);
 
-            let row = x / value.quantityHorizontal;
-            let column = y / value.quantityVertical;
+                let row = x / value.quantityHorizontal;
+                let column = y / value.quantityVertical;
 
-            if (row > column) {
+                if (row > column) {
 
-                size = column;
+                    size = column;
+                }
+                else {
+                    size = row;
+                }
+
+                this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${size }px)`;
+                this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${size }px)`;
+
+                this.outputImage.append(value.x);
+
+
+                let biasX = -parseFloat(getComputedStyle(this.outputImage.lastChild).left) / 2,
+                    biasY = -parseFloat(getComputedStyle(this.outputImage.lastChild).top) / 2;
+                this.outputImage.style.transform = `translate(${biasX}px ,${biasY}px)`;
+
+                let width = (((size) * value.quantityHorizontal) - parseFloat(getComputedStyle(this.outputImageWidth).width)) / 2 - 10 - biasX;
+                document.body.getElementsByClassName('output-image__line-width')[0].style.width = `${width}px`;
+                document.body.getElementsByClassName('output-image__line-width')[1].style.width = `${width}px`;
+
+                let height = ((parseFloat(getComputedStyle(this.outputImage.firstElementChild).height)) * value.quantityVertical) / 2 - 31.2 / 2 - biasY;
+                document.body.getElementsByClassName('output-image__line-height')[0].style.height = `${height}px`;
+                document.body.getElementsByClassName('output-image__line-height')[1].style.height = `${height}px`;
             }
             else {
-                size = row;
+                this.outputImage.style.transform = `translate(${0}px ,${0}px)`;
+                this.outputImage.style.gridTemplateColumns = `1fr`;
+                this.outputImage.style.gridTemplateRows =`0.5fr`;
+                    this.outputImage.textContent = `Максимально доступное количество устройств к визуализации 50 шт. Если
+                    Вас интересует видеостена больше, чем из 50 устройств, пожалуйста, свяжитесь с менеджером компании.`
             }
 
-            this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${size }px)`;
-            this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${size }px)`;
-
-            this.outputImage.append(value.x);
-
-
-
-            let biasX = -parseFloat(getComputedStyle(this.outputImage.lastChild).left) / 2,
-                biasY = -parseFloat(getComputedStyle(this.outputImage.lastChild).top) / 2;
-            this.outputImage.style.transform = `translate(${biasX}px ,${biasY}px)`;
-
-            let width = (((size) * value.quantityHorizontal) - parseFloat(getComputedStyle(this.outputImageWidth).width)) / 2 - 10 - biasX;
-            document.body.getElementsByClassName('output-image__line-width')[0].style.width = `${width}px`;
-            document.body.getElementsByClassName('output-image__line-width')[1].style.width = `${width}px`;
-
-            let height = ((parseFloat(getComputedStyle(this.outputImage.firstElementChild).height)) * value.quantityVertical) / 2 - 31.2 / 2 -  biasY ;
-            document.body.getElementsByClassName('output-image__line-height')[0].style.height = `${height}px`;
-            document.body.getElementsByClassName('output-image__line-height')[1].style.height = `${height}px`;
 
         });
     }
