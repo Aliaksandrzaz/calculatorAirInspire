@@ -7,21 +7,22 @@ export class Model {
         this.distanceVertical = 0.65;
         this.distanceHorizontal = 0.65;
         this.regQuantity = /^[\d]+$/;
-        this.countImage = 0;
+        this.countImage = 1;
     }
 
     changeDistanceHorizontal(value) {
-        if (this.regQuantity.test(value[2].value)) {
-            this.quantityHorizontal = parseInt(value[2].value);
+        if (this.regQuantity.test(value[0].value)) {
+            this.quantityHorizontal = parseInt(value[0].value);
         }
         this.distanceHorizontal = (((this.quantityHorizontal - 1) * 0.465 + 0.65) * 1000) / 1000;
-        this.eventEmitter.emit('changeValueDistanceHorizontal', this.distanceHorizontal.toFixed(3));
         this.eventEmitter.emit('changeQuantityHorizontal', this.quantityHorizontal);
+        this.eventEmitter.emit('changeValueDistanceHorizontal', this.distanceHorizontal.toFixed(3));
+
     }
 
     changeDistanceVertical(value) {
-        if (this.regQuantity.test(value[3].value)) {
-            this.quantityVertical = parseInt(value[3].value);
+        if (this.regQuantity.test(value[1].value)) {
+            this.quantityVertical = parseInt(value[1].value);
         }
         this.distanceVertical = (((this.quantityVertical - 1) * 0.465 + 0.65) * 1000) / 1000;
         this.eventEmitter.emit('changeValueDistanceVertical', this.distanceVertical.toFixed(3));
@@ -30,7 +31,7 @@ export class Model {
 
     changeQuantityHorizontal(value) {
 
-        this.quantityHorizontal = Math.round((value[0].value - 0.65) / 0.465 + 1);
+        this.quantityHorizontal = Math.round((value[2].value - 0.65) / 0.465 + 1);
         this.distanceHorizontal = (((this.quantityHorizontal - 1) * 0.465 + 0.65) * 1000) / 1000;
 
         this.eventEmitter.emit('changeQuantityHorizontal', this.quantityHorizontal);
@@ -38,7 +39,7 @@ export class Model {
     }
 
     changeQuantityVertical(value) {
-        this.quantityVertical = Math.round((value[1].value - 0.65) / 0.465 + 1);
+        this.quantityVertical = Math.round((value[3].value - 0.65) / 0.465 + 1);
         this.distanceVertical = (((this.quantityVertical - 1) * 0.465 + 0.65) * 1000) / 1000;
 
         this.eventEmitter.emit('changeValueDistanceVertical', this.distanceVertical.toFixed(3));
@@ -56,42 +57,127 @@ export class Model {
     }
 
     createImage() {
-        let fragment = new Array(this.quantityVertical * this.quantityHorizontal).fill(null);
+        let matrix = [];
 
-        let z = fragment.reduce((acc, el) => {
-            if (this.countImage !==0 && this.countImage % this.quantityHorizontal=== 0){
-                this.countImage = 0;
-            }
-            else {
+        //rotate & create
+        for (let y = 0; y < this.quantityVertical; y++) {
+            matrix[y] = [];
+            for (let x = 0; x < this.quantityHorizontal; x++) {
                 this.countImage++;
+                let element = document.createElement('div');
+
+                // element.style.transform = 'translate(25%) rotate(0deg)';
+
+                element.classList.add('output-image__image');
+
+                if (this.countImage % 2 === 0) {
+                    element.style.transform = 'rotate(45deg)';
+                    element.classList.add('output-image__image--reverse');
+                }
+
+                if (this.quantityHorizontal % 2 === 0 && y % 2 !== 0 && x % 2 === 0) {
+                    element.style.transform = 'rotate(45deg)';
+                }
+                else if (this.quantityHorizontal % 2 === 0 && y % 2 !== 0 && x % 2 !== 0) {
+                    element.style.transform = 'rotate(0deg)'
+                }
+                matrix[y][x] = element;
             }
-            let element = document.createElement('div');
-            let classImage = this.countImage % 2 === 0 ? 'output-image__vertical' : 'output-image__horizontal';
-            // element.style.transform = this.countImage % 2 === 0 ? 'rotate(45deg)' : 'rotate(0deg)';
-            // element.style.transform = `translate(${-10}px, ${-10}px)`;
+        }
 
-            element.classList.add(classImage);
-            acc.append(element);
+        //translate
+        for (let y = 0; y < this.quantityVertical; y++) {
+            for (let x = 0; x < this.quantityHorizontal; x++) {
+                if (x > 0) {
+                    matrix[y][x].style.left = `${-25 * x}%`;
+                }
+                if (y > 0) {
+                    matrix[y][x].style.top = `${-25 * y}%`;
+                }
+            }
+        }
 
-            // if (this.countImage !==0 && this.countImage % this.quantityHorizontal=== 0){
-            //     this.countImage = 0;
-            // }
-            // else {
-            //     this.countImage++;
-            // }
-            return acc;
-        }, document.createDocumentFragment());
 
-        this.countImage =0;
+        let doneFragment = document.createDocumentFragment();
+        for (let y = 0; y < this.quantityVertical; y++) {
+            for (let x = 0; x < this.quantityHorizontal; x++) {
+                doneFragment.append(matrix[y][x]);
+            }
+        }
+
+
+        this.countImage = 0;
 
         this.eventEmitter.emit('createImage', {
             // element: element,
-            x: z,
+            x: doneFragment,
             quantityHorizontal: this.quantityHorizontal,
             quantityVertical: this.quantityVertical
         });
     }
 
+    // createImage() {
+    //     let fragment = new Array(this.quantityVertical * this.quantityHorizontal).fill(null);
+    //
+    //     let z = fragment.reduce((acc, el) => {
+    //         this.countImage++;
+    //         let element = document.createElement('div');
+    //         let classImage = this.countImage % 2 === 0 ? 'output-image__vertical' : 'output-image__horizontal';
+    //         element.classList.add(classImage);
+    //         acc.push(element);
+    //         return acc;
+    //     }, []);
+    //
+    //     this.countImage = 0;
+    //
+    //     if (this.quantityHorizontal % 2 === 0) {
+    //         for (let i = 0; i < z.length; i++) {
+    //             if (i % 2 !== 0) {
+    //                 z[i].style.transform = 'rotate(45deg)';
+    //             }
+    //         }
+    //     }
+    //     else {
+    //         for (let i = 0; i < z.length; i++) {
+    //             if (i % 2 === 0) {
+    //                 z[i].style.transform = 'rotate(45deg)';
+    //             }
+    //         }
+    //     }
+    //
+    //     // let countRotate = 1 + this.quantityHorizontal;
+    //     //
+    //     // for (let i = 0; i < z.length; i++) {
+    //     //     this.countImage++;
+    //     //     if (countRotate === this.quantityHorizontal+1) {
+    //     //         for (let j = 0; j < this.quantityHorizontal; j++) {
+    //     //             z[i].style.transform = this.countImage % 2 === 0 ? 'rotate(45deg)' : 'rotate(0deg)';
+    //     //         }
+    //     //         countRotate = countRotate + this.quantityHorizontal;
+    //     //     }
+    //     //     else {
+    //     //         for (let j = 0; j < this.quantityHorizontal; j++) {
+    //     //             z[i].style.transform = this.countImage % 2 === 0 ? 'rotate(0deg)' : 'rotate(45deg)';
+    //     //         }
+    //     //     }
+    //     // }
+    //
+    //     let doneFragment = z.reduce((acc, el) => {
+    //         acc.append(el);
+    //         return acc;
+    //     }, document.createDocumentFragment());
+    //
+    //
+    //     this.countImage = 0;
+    //
+    //     this.eventEmitter.emit('createImage', {
+    //         // element: element,
+    //         x: doneFragment,
+    //         quantityHorizontal: this.quantityHorizontal,
+    //         quantityVertical: this.quantityVertical
+    //     });
+    // }
+    //
     // createImage() {
     //     let fragment = new Array(this.quantityVertical).fill(null);
     //

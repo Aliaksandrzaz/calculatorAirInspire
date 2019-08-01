@@ -27,6 +27,7 @@ export class View {
         this.changeOutputValue();
 
         this.createFieldImage();
+        this.controller.createFieldImage();
     }
 
     handleEvent() {
@@ -78,64 +79,43 @@ export class View {
     createFieldImage() {
         this.eventEmitter.subscribe('createImage', (value) => {
             for (let i = 0, length = this.outputImage.childElementCount; i < length; i++) {
-                // this.outputImage.removeChild(this.outputImage.firstChild);
                 this.outputImage.children.item(0).remove();
             }
-            // let size = 0;
-            // let count = 0;
-            // if (parseFloat(getComputedStyle(this.outputImage).width) >= parseFloat(getComputedStyle(this.outputImage).height)) {
-            //     size = parseFloat(getComputedStyle(this.outputImage).height) ;
-            // }
-            // else {
-            //     size = parseFloat(getComputedStyle(this.outputImage).width);
-            // }
-            //
-            // if (value.quantityHorizontal <= value.quantityVertical) {
-            //     count = value.quantityVertical;
-            // }
-            // else {
-            //     // count = (value.quantityHorizontal + value.quantityVertical) / 2;
-            //     count = value.quantityVertical;
-            // }
-            // this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${size / count}px)`;
-            //
-            // this.outputImage.style.gridTemplateColumns = `${value.quantityHorizontal}, ${size / count}px`;
-            // // for (let i = 0; i < value.quantityVertical; i++) {
-            // //     let size = parseFloat(getComputedStyle(this.outputImage).height) / value.quantityVertical / value.quantityHorizontal;
-            // //     value.x.querySelectorAll('.x')[i].style.gridTemplateColumns = `repeat (${value.quantityHorizontal}, ${size} px)`;
-            // // }
-            //
-            // this.outputImage.append(value.x);
-            // // for (let i = 0; i < value.quantityVertical; i++) {
-            // //     // document.querySelectorAll('.x')[i].style.gridTemplateColumns = `repeat (${value.quantityHorizontal},${ parseFloat(getComputedStyle(this.outputImage).height) / value.quantityVertical / value.quantityHorizontal})px`;
-            // //     let size = parseFloat(getComputedStyle(this.outputImage).height) / value.quantityVertical / value.quantityHorizontal;
-            // //     document.getElementsByClassName('x')[i].style.gridTemplateColumns = `${value.quantityHorizontal}, ${size} px`;
-            // // }
-
             let size = 0;
             let count = 0;
-            // let size = getComputedStyle(this.outputImage).width < getComputedStyle(this.outputImage).height ? parseInt(getComputedStyle(this.outputImage).height) : parseInt(getComputedStyle(this.outputImage).width);
-            // let count = value.quantityHorizontal > value.quantityVertical ? value.quantityHorizontal : value.quantityVertical;
-            if (parseFloat(getComputedStyle(this.outputImage).width) >= parseFloat(getComputedStyle(this.outputImage).height)) {
-                size = parseFloat(getComputedStyle(this.outputImage).height);
+
+            let x = parseFloat(getComputedStyle(this.outputImage).width);
+            let y = parseFloat(getComputedStyle(this.outputImage).height);
+
+            let row = x / value.quantityHorizontal;
+            let column = y / value.quantityVertical;
+
+            if (row > column) {
+
+                size = column;
             }
             else {
-                size = parseFloat(getComputedStyle(this.outputImage).width);
+                size = row;
             }
 
-            if (value.quantityHorizontal <= value.quantityVertical) {
-                count = value.quantityVertical;
-            }
-            else {
-                count = (value.quantityHorizontal + value.quantityVertical) / 2 ;
-            }
+            this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${size }px)`;
+            this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${size }px)`;
 
-            this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${size / count}px)`;
-            this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${size / count}px)`;
-            // this.outputImage.style.gridTemplateColumns = `repeat(${value.quantityHorizontal}, ${100 / value.quantityHorizontal}%)`;
-            // this.outputImage.style.gridTemplateRows = `repeat(${value.quantityVertical}, ${100 / value.quantityVertical}%)`;
             this.outputImage.append(value.x);
 
+
+
+            let biasX = -parseFloat(getComputedStyle(this.outputImage.lastChild).left) / 2,
+                biasY = -parseFloat(getComputedStyle(this.outputImage.lastChild).top) / 2;
+            this.outputImage.style.transform = `translate(${biasX}px ,${biasY}px)`;
+
+            let width = (((size) * value.quantityHorizontal) - parseFloat(getComputedStyle(this.outputImageWidth).width)) / 2 - 10 - biasX;
+            document.body.getElementsByClassName('output-image__line-width')[0].style.width = `${width}px`;
+            document.body.getElementsByClassName('output-image__line-width')[1].style.width = `${width}px`;
+
+            let height = ((parseFloat(getComputedStyle(this.outputImage.firstElementChild).height)) * value.quantityVertical) / 2 - 31.2 / 2 -  biasY ;
+            document.body.getElementsByClassName('output-image__line-height')[0].style.height = `${height}px`;
+            document.body.getElementsByClassName('output-image__line-height')[1].style.height = `${height}px`;
 
         });
     }

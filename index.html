@@ -19,6 +19,18 @@
                 </select>
             </div>
 
+
+
+            <p class="calculator-text">Или введите нужное количество устройств</p>
+            <div class="calculator__input quantity-value">
+                <input value="1" min="1" id="quantityValueHorizontal" data-inputValue class="size-value__text"
+                       type="number"
+                       step="1" placeholder="Количество по горизонтали">
+                <input value="1" min="1" id="quantityValueVertical" data-inputValue class="size-value__text"
+                       type="number"
+                       step="1" placeholder="Количество по вертикали">
+            </div>
+
             <p class="calculator-text">Введите нужный размер экрана, метры</p>
             <div class="calculator__input size-value">
                 <input value="0.650" min="0.650" id="sizeValueHorizontal" data-inputValue
@@ -33,23 +45,24 @@
                        placeholder="Вертикаль">
             </div>
 
-            <p class="calculator-text">Или введите нужное количество устройств</p>
-            <div class="calculator__input quantity-value">
-                <input value="1" min="1" id="quantityValueHorizontal" data-inputValue class="size-value__text"
-                       type="number"
-                       step="1" placeholder="Количество по горизонтали">
-                <input value="1" min="1" id="quantityValueVertical" data-inputValue class="size-value__text"
-                       type="number"
-                       step="1" placeholder="Количество по вертикали">
-            </div>
         </div>
 
         <div class="output-drawing">
             <div></div>
-            <div class="output-image__width">0.65<span>м</span></div>
-            <div class="output-image__height">0.65<span>м</span></div>
+            <div class="">
+                <span class="output-image__line-width output-image__line-width--left"></span>
+                <span class="output-image__width">0.65м</span>
+                <span class="output-image__line-width output-image__line-width--right"></span>
+            </div>
+
+            <div class="container-line-height">
+                <span class="output-image__line-height output-image__line-height--up"></span>
+                <span class="output-image__height">0.65м</span>
+                <span class="output-image__line-height output-image__line-height--down"></span>
+            </div>
             <div class="output-image">
-                <div class="output-image__horizontal"></div>
+                    <div class="output-image__image"></div>
+
             </div>
         </div>
 
@@ -74,8 +87,6 @@
     </div>
     <!--</div>-->
 </div>
-
-
 
 </body>
 </html>
