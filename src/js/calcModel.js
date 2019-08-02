@@ -1,7 +1,6 @@
 export class Model {
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
-        this.coeff = [5, 2, 1, 1];
         this.quantityVertical = 1;
         this.quantityHorizontal = 1;
         this.distanceVertical = 0.65;
@@ -107,7 +106,6 @@ export class Model {
         this.countImage = 0;
 
         this.eventEmitter.emit('createImage', {
-            // element: element,
             x: doneFragment,
             quantityHorizontal: this.quantityHorizontal,
             quantityVertical: this.quantityVertical

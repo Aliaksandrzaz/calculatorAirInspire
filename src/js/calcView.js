@@ -2,31 +2,25 @@ export class View {
     constructor(controller, model, eventEmitter) {
         this.controller = controller;
         this.eventEmitter = eventEmitter;
-        this.containerCalculator = document.querySelector('.container-calculator');
         this.sizeValueHorizontal = document.getElementById('sizeValueHorizontal');
         this.sizeValueVertical = document.getElementById('sizeValueVertical');
         this.quantityValueHorizontal = document.getElementById('quantityValueHorizontal');
         this.quantityValueVertical = document.getElementById('quantityValueVertical');
         this.calculacor = document.querySelector('.calculator');
         this.value = document.body.querySelectorAll('.size-value__text');
-        // this.sizeValue = document.querySelectorAll('.size-value');
-        // this.quantityValue = document.querySelectorAll('.quantity-value');
         this.outputValue = document.body.querySelectorAll('[data-outputValue]');
         this.outputImageHeight = document.querySelector('.output-image__height');
         this.outputImageWidth = document.querySelector('.output-image__width');
         this.calculacor.addEventListener('change', this);
-
-
         this.outputImage = document.querySelector('.output-image');
-
 
         this.changeDistanceVertical();
         this.changeDistanceHorizontal();
         this.changeQuantityHorizontal();
         this.changeQuantityVertical();
         this.changeOutputValue();
-
         this.createFieldImage();
+
         this.controller.createFieldImage();
     }
 
@@ -45,14 +39,14 @@ export class View {
     changeDistanceVertical() {
         this.eventEmitter.subscribe('changeValueDistanceVertical', (inputValue) => {
             this.sizeValueVertical.value = inputValue;
-            this.outputImageWidth.textContent = `${inputValue.split('.').join(',')}м`;
+            this.outputImageHeight.textContent = `${inputValue.split('.').join(',')}м`;
         });
     }
 
     changeDistanceHorizontal() {
         this.eventEmitter.subscribe('changeValueDistanceHorizontal', (inputValue) => {
             this.sizeValueHorizontal.value = inputValue;
-            this.outputImageHeight.textContent = `${inputValue.split('.').join(',')}м`;
+            this.outputImageWidth.textContent = `${inputValue.split('.').join(',')}м`;
         });
     }
 
@@ -125,8 +119,6 @@ export class View {
                     this.outputImage.textContent = `Максимально доступное количество устройств к визуализации 50 шт. Если
                     Вас интересует видеостена больше, чем из 50 устройств, пожалуйста, свяжитесь с менеджером компании.`
             }
-
-
         });
     }
 }
