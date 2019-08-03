@@ -80,7 +80,7 @@ export class View {
         if ((element.closest('.size-value') && event.type === 'change') || oldValueFlag === 1) {
             this.controller.changeOutputValue2(this.value);
         }
-        else if ((element.closest('.quantity-value') && event.type === 'change')  || oldValueFlag ===1) {
+        else if ((element.closest('.quantity-value') && event.type === 'change') || oldValueFlag === 1) {
             this.controller.changeOutputValue1(this.value);
         }
 
@@ -182,13 +182,13 @@ export class View {
 
                 this.animationOutputValue();
 
-                let containerLineHeightLeft = x/2 - value.quantityHorizontal * column + biasX;
-                if (containerLineHeightLeft > 0){
+                let containerLineHeightLeft = x / 2 - value.quantityHorizontal * column + biasX;
+                if (containerLineHeightLeft > 0) {
                     this.containerLineHeight.style.left = `${containerLineHeightLeft}px`;
                 }
 
-                let containerLineWidthTop = y/2 - value.quantityVertical * row + biasY;
-                if (containerLineWidthTop > 0){
+                let containerLineWidthTop = y / 2 - value.quantityVertical * row + biasY;
+                if (containerLineWidthTop > 0) {
                     this.containerLineWidth.style.top = `${containerLineWidthTop}px`;
                 }
 
