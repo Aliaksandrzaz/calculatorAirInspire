@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator air inspire</title>
     <link rel="stylesheet" href="./../src/style/main.css">
-    <!--<script defer src="app.js" type="module"></script>-->
+    <script defer src="app.js" type="module"></script>
 </head>
 <body>
 <div class="container-calculator">
@@ -24,17 +24,27 @@
             <div class="calculator__input quantity-value">
                 <div class="input__row">
                     <span>По горизонтали </span>
-                    <input value="1" min="1" id="quantityValueHorizontal" data-inputValue
-                           class="size-value__text"
-                           type="number"
-                           step="1" placeholder="Количество по горизонтали">
+                    <div class="input__change">
+                        <span id="btnMinusQuantityValueHorizontal">-</span>
+                        <input value="1" min="1" id="quantityValueHorizontal" data-inputValue
+                               class="size-value__text"
+                               type="number"
+                               step="1" placeholder="Количество по горизонтали">
+                        <span id="btnPlusQuantityValueHorizontal">+</span>
+                    </div>
+
                 </div>
                 <div class="input__row">
                     <span>По вертикали </span>
-                    <input value="1" min="1" id="quantityValueVertical" data-inputValue
-                           class="size-value__text"
-                           type="number"
-                           step="1" placeholder="Количество по вертикали">
+                    <div class="input__change">
+                        <span id="btnMinusQuantityValueVertical">-</span>
+                        <input value="1" min="1" id="quantityValueVertical" data-inputValue
+                               class="size-value__text"
+                               type="number"
+                               step="1" placeholder="Количество по вертикали">
+                        <span id="btnPlusQuantityValueVertical">+</span>
+                    </div>
+
                 </div>
             </div>
 
@@ -42,26 +52,39 @@
             <div class="calculator__input size-value">
                 <div class="input__row">
                     <span>По горизонтали</span>
-                    <input value="0.65" min="0.650"
-                           id="sizeValueHorizontal" data-inputValue
-                           class="size-value__text"
-                           step="1"
-                           type="number"
-                           placeholder="Горизонталь"></div>
+
+                    <div class="input__change">
+                        <span id="btnMinusSizeValueHorizontal">-</span>
+                        <input value="0.65" min="0.650"
+                               id="sizeValueHorizontal" data-inputValue
+                               class="size-value__text"
+                               step="1"
+                               type="number"
+                               placeholder="Горизонталь">
+                        <span id="btnPlusSizeValueHorizontal">+</span>
+                    </div>
+
+                </div>
                 <div class="input__row">
                     <span>По вертикали</span>
-                    <input value="0.65" min="0.650" id="sizeValueVertical"
-                           data-inputValue
-                           class="size-value__text"
-                           step="1"
-                           type="number"
-                           placeholder="Вертикаль"></div>
+                    <div class="input__change">
+                        <span id="btnMinusSizeValueVertical">-</span>
+                        <input value="0.65" min="0.650" id="sizeValueVertical"
+                               data-inputValue
+                               class="size-value__text"
+                               step="1"
+                               type="number"
+                               placeholder="Вертикаль">
+                        <span id="btnPlusSizeValueVertical">+</span>
+                    </div>
+
+                </div>
             </div>
         </div>
 
         <div class="output-drawing">
             <div></div>
-            <div class="">
+            <div class="container-line-width">
                 <span class="output-image__line-width output-image__line-width--left"></span>
                 <span class="output-image__width">0,65м</span>
                 <span class="output-image__line-width output-image__line-width--right"></span>

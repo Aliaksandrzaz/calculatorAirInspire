@@ -12,7 +12,20 @@ export class View {
         this.outputImageHeight = document.querySelector('.output-image__height');
         this.outputImageWidth = document.querySelector('.output-image__width');
         this.calculacor.addEventListener('change', this);
+        this.calculacor.addEventListener('click', this);
         this.outputImage = document.querySelector('.output-image');
+        this.containerLineHeight = document.querySelector('.container-line-height');
+        this.containerLineWidth = document.querySelector('.container-line-width');
+
+        this.btnMinusSizeValueHorizontal = document.getElementById('btnMinusSizeValueHorizontal');
+        this.btnPlusSizeValueHorizontal = document.getElementById('btnPlusSizeValueHorizontal');
+        this.btnMinusSizeValueVertical = document.getElementById('btnMinusSizeValueVertical');
+        this.btnPlusSizeValueVertical = document.getElementById('btnPlusSizeValueVertical');
+
+        this.btnMinusQuantityValueHorizontal = document.getElementById('btnMinusQuantityValueHorizontal');
+        this.btnPlusQuantityValueHorizontal = document.getElementById('btnPlusQuantityValueHorizontal');
+        this.btnMinusQuantityValueVertical = document.getElementById('btnMinusQuantityValueVertical');
+        this.btnPlusQuantityValueVertical = document.getElementById('btnPlusQuantityValueVertical');
 
         this.changeDistanceVertical();
         this.changeDistanceHorizontal();
@@ -25,13 +38,50 @@ export class View {
     }
 
     handleEvent() {
+        // this.value=[quantityValueHorizontal, quantityValueVertical, sizeValueHorizontal, sizeValueVertical]
         let element = event.target;
 
-        if (element.closest('.size-value')) {
-            this.controller.changeOutputValue1(this.value);
+        let oldValueFlag = 0;
+
+        if (element === this.btnMinusSizeValueHorizontal && this.value[0].value - 1 >= 1 && this.value[0].value > 0.65) {
+            --this.value[0].value;
+            oldValueFlag++;
         }
-        else {
+        else if (element === this.btnPlusSizeValueHorizontal) {
+            this.value[0].value++;
+            oldValueFlag++;
+        }
+        else if (element === this.btnMinusSizeValueVertical && this.value[1].value - 1 >= 1 && this.value[3].value > 0.65) {
+            --this.value[1].value;
+            oldValueFlag++;
+        }
+        else if (element === this.btnPlusSizeValueVertical) {
+            this.value[1].value++;
+            oldValueFlag++;
+        }
+
+        else if (element === this.btnMinusQuantityValueHorizontal && this.value[0].value - 1 >= 1) {
+            --this.value[0].value;
+            oldValueFlag++;
+        }
+        else if (element === this.btnPlusQuantityValueHorizontal) {
+            this.value[0].value++;
+            oldValueFlag++;
+        }
+        else if (element === this.btnMinusQuantityValueVertical && this.value[1].value - 1 >= 1) {
+            --this.value[1].value;
+            oldValueFlag++;
+        }
+        else if (element === this.btnPlusQuantityValueVertical) {
+            this.value[1].value++;
+            oldValueFlag++;
+        }
+
+        if ((element.closest('.size-value') && event.type === 'change') || oldValueFlag === 1) {
             this.controller.changeOutputValue2(this.value);
+        }
+        else if ((element.closest('.quantity-value') && event.type === 'change')  || oldValueFlag ===1) {
+            this.controller.changeOutputValue1(this.value);
         }
 
     }
@@ -70,12 +120,30 @@ export class View {
         });
     }
 
+    removeAnimationOutputValue() {
+        this.outputValue.forEach((el) => {
+            el.classList.remove('animationChangeOutputValueText')
+        })
+    }
+
+    animationOutputValue() {
+        this.outputValue.forEach((el) => {
+            el.classList.add('animationChangeOutputValueText')
+        })
+    }
+
+
     createFieldImage() {
         this.eventEmitter.subscribe('createImage', (value) => {
             for (let i = 0, length = this.outputImage.childElementCount; i < length; i++) {
                 this.outputImage.children.item(0).remove();
             }
+
+            this.removeAnimationOutputValue();
+            this.containerLineHeight.style.left = `0px`;
+            this.containerLineWidth.style.top = `0px`;
             this.outputImage.textContent = '';
+
             if (value.quantityHorizontal * value.quantityVertical <= 50) {
                 let size = 0;
                 let count = 0;
@@ -111,12 +179,25 @@ export class View {
                 let height = ((parseFloat(getComputedStyle(this.outputImage.firstElementChild).height)) * value.quantityVertical) / 2 - 31.2 / 2 - biasY;
                 document.body.getElementsByClassName('output-image__line-height')[0].style.height = `${height}px`;
                 document.body.getElementsByClassName('output-image__line-height')[1].style.height = `${height}px`;
+
+                this.animationOutputValue();
+
+                let containerLineHeightLeft = x/2 - value.quantityHorizontal * column + biasX;
+                if (containerLineHeightLeft > 0){
+                    this.containerLineHeight.style.left = `${containerLineHeightLeft}px`;
+                }
+
+                let containerLineWidthTop = y/2 - value.quantityVertical * row + biasY;
+                if (containerLineWidthTop > 0){
+                    this.containerLineWidth.style.top = `${containerLineWidthTop}px`;
+                }
+
             }
             else {
                 this.outputImage.style.transform = `translate(${0}px ,${0}px)`;
                 this.outputImage.style.gridTemplateColumns = `1fr`;
-                this.outputImage.style.gridTemplateRows =`0.5fr`;
-                    this.outputImage.textContent = `Максимально доступное количество устройств к визуализации 50 шт. Если
+                this.outputImage.style.gridTemplateRows = `0.5fr`;
+                this.outputImage.textContent = `Максимально доступное количество устройств к визуализации 50 шт. Если
                     Вас интересует видеостена больше, чем из 50 устройств, пожалуйста, свяжитесь с менеджером компании.`
             }
         });

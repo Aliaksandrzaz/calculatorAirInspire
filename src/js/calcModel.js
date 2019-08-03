@@ -9,6 +9,10 @@ export class Model {
         this.countImage = 1;
     }
 
+    changeValuePlus(){
+
+    }
+
     changeDistanceHorizontal(value) {
         if (this.regQuantity.test(value[0].value)) {
             this.quantityHorizontal = parseInt(value[0].value);

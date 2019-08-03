@@ -9,7 +9,7 @@
 .container-calculator {
     font-family: 'OpinionPro', Arial, sans-serif;
     font-weight: 300;
-    font-size: 28px;
+    font-size: 24px;
     color: black;
 }
 
@@ -68,6 +68,7 @@
     border-radius: 5px;
     height: 25px;
     margin: 5px;
+    width: 52%;
 }
 
 .output-drawing {
@@ -186,6 +187,21 @@
 
 [data-outputValue] {
     margin: 5px;
+    opacity: 1;
+}
+
+.animationChangeOutputValueText {
+    animation: changeOutputValueText 1s linear ;
+}
+
+@keyframes changeOutputValueText {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @media only screen and (max-width: 1080px) {
@@ -216,6 +232,7 @@
     height: 10px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    min-width: 40px;
 }
 
 .output-image__line-width--left {
@@ -241,6 +258,7 @@
     width: 11px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    min-height: 40px;
 }
 
 .output-image__line-height--up {
@@ -264,6 +282,11 @@
     display: -ms-grid;
     display: grid;
     justify-items: center;
+    position: relative;
+}
+
+.container-line-width {
+    position: relative;
 }
 
 .output-image__message {
@@ -273,6 +296,27 @@
 .input__row {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 80% 20%;
-    grid-template-columns: 80% 20%;
+    -ms-grid-columns: 65% 30%;
+    grid-template-columns: 65% 30%;
+}
+
+.input__change {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.input__change > span {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
