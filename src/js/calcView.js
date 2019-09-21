@@ -88,14 +88,14 @@ export class View {
 
     changeDistanceVertical() {
         this.eventEmitter.subscribe('changeValueDistanceVertical', (inputValue) => {
-            this.sizeValueVertical.value = inputValue;
+            this.sizeValueVertical.value = +inputValue;
             this.outputImageHeight.textContent = `${inputValue.split('.').join(',')}м`;
         });
     }
 
     changeDistanceHorizontal() {
         this.eventEmitter.subscribe('changeValueDistanceHorizontal', (inputValue) => {
-            this.sizeValueHorizontal.value = inputValue;
+            this.sizeValueHorizontal.value = +inputValue;
             this.outputImageWidth.textContent = `${inputValue.split('.').join(',')}м`;
         });
     }
@@ -167,6 +167,25 @@ export class View {
 
                 this.outputImage.append(value.x);
 
+                // for (let y = 0; y < value.quantityVertical; y++) {
+                //     for (let x = 0; x < value.quantityHorizontal; x++) {
+                //         if (x > 0) {
+                //             // transform[y][x] = `${transform[y][x]} translate(${-25*x}%)` ;
+                //             // matrix[y][x].style.transform = `translate(${-25*x}%)`
+                //             value.matrix[y][x].style.left = `${0 * x}%`;
+                //         }
+                //         if (y > 0) {
+                //             value.matrix[y][x].style.top = `${0 * y}%`;
+                //             // transform[y][x] = `${transform[y][x]} translateY(${-25*y}%)` ;
+                //             // matrix[y][x].style.transform = `translateY(${-25*y}%)`
+                //         }
+                //     }
+                // }
+
+                this.outputImage.lastChild.left = `0%`;
+                this.outputImage.lastChild.top = `0%`;
+
+
 
                 let biasX = -parseFloat(getComputedStyle(this.outputImage.lastChild).left) / 2,
                     biasY = -parseFloat(getComputedStyle(this.outputImage.lastChild).top) / 2;
@@ -182,15 +201,20 @@ export class View {
 
                 this.animationOutputValue();
 
-                let containerLineHeightLeft = x / 2 - value.quantityHorizontal * column + biasX;
+
+                // let containerLineHeightLeft = x / 2 - value.quantityHorizontal * column + biasX;
+                let containerLineHeightLeft = (x - value.quantityHorizontal * column) / 2;
                 if (containerLineHeightLeft > 0) {
                     this.containerLineHeight.style.left = `${containerLineHeightLeft}px`;
                 }
 
-                let containerLineWidthTop = y / 2 - value.quantityVertical * row + biasY;
+                // let containerLineWidthTop = y / 2 - value.quantityVertical * row + biasY;
+                let containerLineWidthTop =  (y - value.quantityVertical * row) / 2;
                 if (containerLineWidthTop > 0) {
                     this.containerLineWidth.style.top = `${containerLineWidthTop}px`;
                 }
+
+
 
             }
             else {

@@ -1,16 +1,17 @@
 @font-face {
     font-family: 'OpinionPro';
-    src: url('./fonts/Opinionprolight.woff2') format('woff2'),
-    url('./fonts/Opinionprolight.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    src: url('./fonts/Opinionprolight.woff2') format('woff2'),
+    url('./fonts/Opinionprolight.woff') format('woff');
 }
 
 .container-calculator {
     font-family: 'OpinionPro', Arial, sans-serif;
-    font-weight: 300;
-    font-size: 24px;
+    font-size: 18px;
     color: black;
+    font-weight: 300;
+
 }
 
 .container-calculator {
@@ -23,7 +24,8 @@
 .calculator__select-container {
     display: -ms-grid;
     display: grid;
-    justify-items: center;
+    justify-items: flex-start;
+    /*align-self: end;*/
 }
 
 .calculator__select {
@@ -31,7 +33,7 @@
     border-radius: 5px;
     height: 25px;
     margin: 5px;
-    width: 30%;
+    /*width: 45%;*/
 }
 
 .container {
@@ -39,25 +41,33 @@
     display: grid;
     -ms-grid-columns: 35% 65%;
     grid-template-columns: 35% 65%;
+    margin: 10px 0px;
+    height: 30vw;
+    justify-items: center;
 }
 
 .calculator {
     display: -ms-grid;
     display: grid;
-    justify-items: center;
+    /* justify-items: center; */
+    align-items: center;
+    align-self: center;
+    /* grid-template-rows: 10% 35px 2em 5em 2em 5em; */
+    /* grid-template-columns: 79%; */
 }
 
 .calculator-text {
-    text-align: center;
+    /*text-align: center;*/
     font-weight: 700;
-    font-size: 42px;
+    font-size: 22px;
+    margin: 20px 0px;
 }
 
 .calculator__input {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 100%;
-    grid-template-columns: 100%;
+    -ms-grid-columns: 410px;
+    grid-template-columns: 410px;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -69,6 +79,8 @@
     height: 25px;
     margin: 5px;
     width: 52%;
+    text-align: center;
+    font-size: 14.6px;
 }
 
 .output-drawing {
@@ -83,6 +95,7 @@
     -ms-flex-align: center;
     align-items: center;
     overflow: hidden;
+    justify-self: normal;
 }
 
 .output-drawing > *:nth-child(1) {
@@ -128,20 +141,25 @@
 }
 
 .output-image__image {
-    width: 100%;
-    height: 100%;
-    background: url("./image/9.gif");
+    width: 97%;
+    height: 97%;
+    background: url("https://raw.githubusercontent.com/Aliaksandrzaz/calculatorAirInspire/master/src/style/image/9.gif");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position-x: 50%;
     position: relative;
-    -webkit-animation: rotate 1s 1s infinite linear;
-    animation: rotate 1s 1s infinite linear;
+    /*-webkit-animation: rotate 1s 1s infinite linear;*/
+    /*animation: rotate 1s 1s infinite linear;*/
 }
 
 .output-image__image--reverse {
-    animation: rotate-reverse 1s 1s infinite linear;
+    /*animation: rotate-reverse 1s 1s infinite linear;*/
 }
+
+/*.output-image__image:hover {*/
+    /*-webkit-animation: rotate 1s infinite linear;*/
+    /*animation: rotate 1s infinite linear;*/
+/*}*/
 
 @keyframes rotate {
     from {
@@ -191,7 +209,7 @@
 }
 
 .animationChangeOutputValueText {
-    animation: changeOutputValueText 1s linear ;
+    animation: changeOutputValueText 1s linear;
 }
 
 @keyframes changeOutputValueText {
@@ -205,6 +223,16 @@
 }
 
 @media only screen and (max-width: 1080px) {
+    .calculator {
+        grid-template-rows: repeat(5, 1fr);
+        justify-items: center;
+        align-items: center;
+    }
+
+    .calculator__select-container{
+        align-self: center;
+    }
+
     .container-calculator {
         -ms-grid-rows: 2fr 1fr;
         grid-template-rows: 2fr 1fr;
@@ -213,6 +241,8 @@
     .container {
         -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+        justify-items: center;
+        height: auto;
     }
 
     .output-drawing {
@@ -236,14 +266,14 @@
 }
 
 .output-image__line-width--left {
-    background: url("./image/lineWidthtLeft.png");
+    background: url("https://raw.githubusercontent.com/Aliaksandrzaz/calculatorAirInspire/master/src/style/image/lineWidthtLeft.png");
     background-repeat: no-repeat;
     background-size: auto 10px;
     border-left: 1.5px solid black;
 }
 
 .output-image__line-width--right {
-    background: url("./image/lineWidthtRight.png");
+    background: url("https://raw.githubusercontent.com/Aliaksandrzaz/calculatorAirInspire/master/src/style/image/lineWidthtRight.png");
     background-repeat: no-repeat;
     background-size: auto 10px;
     border-right: 1.5px solid black;
@@ -262,14 +292,14 @@
 }
 
 .output-image__line-height--up {
-    background: url("./image/lineHeightUp.png");
+    background: url("https://raw.githubusercontent.com/Aliaksandrzaz/calculatorAirInspire/master/src/style/image/lineHeightUp.png");
     background-repeat: no-repeat;
     background-size: 11px;
     border-top: 1.5px solid black;
 }
 
 .output-image__line-height--down {
-    background: url("./image/lineHeightUp.png");
+    background: url("https://raw.githubusercontent.com/Aliaksandrzaz/calculatorAirInspire/master/src/style/image/lineHeightUp.png");
     background-repeat: no-repeat;
     background-size: 11px;
     -webkit-transform: rotateZ(180deg);
@@ -298,6 +328,7 @@
     display: grid;
     -ms-grid-columns: 65% 30%;
     grid-template-columns: 65% 30%;
+    align-items: center;
 }
 
 .input__change {
@@ -313,10 +344,15 @@
 }
 
 input[type='number'] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+
+.input__change > span {
+    font-size: 36px;
+}
+
